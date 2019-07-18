@@ -1,0 +1,186 @@
+Last login: Wed Jul 17 10:39:30 on ttys001
+➜  ~ cd codeclan_work/week_4/day_4/hogwarts 
+➜  hogwarts git:(master) ✗ gaa
+➜  hogwarts git:(master) ✗ git commit -m "initialized sinatra"
+[master 48c57b2] initialized sinatra
+ 5 files changed, 67 insertions(+), 9 deletions(-)
+ create mode 100644 views/index.erb
+ create mode 100644 views/layout.erb
+ create mode 100644 views/show.erb
+➜  hogwarts git:(master) gaa 
+➜  hogwarts git:(master) ✗ git commit -m "'new' issue"
+[master 292f92b] 'new' issue
+ 4 files changed, 51 insertions(+), 9 deletions(-)
+ create mode 100644 views/new.erb
+➜  hogwarts git:(master) gaa
+➜  hogwarts git:(master) ✗ git commit -m "'new' issue solved"
+[master a6a8851] 'new' issue solved
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+➜  hogwarts git:(master) touch models/house.rb
+➜  hogwarts git:(master) ✗ ruby db/seeds.rb 
+/Users/evebramley/codeclan_work/week_4/day_4/hogwarts/models/house.rb:1:in `<top (required)>': undefined method `equire_relative' for main:Object (NoMethodError)
+Did you mean?  require_relative
+	from db/seeds.rb:2:in `require_relative'
+	from db/seeds.rb:2:in `<main>'
+➜  hogwarts git:(master) ✗ ruby db/seeds.rb
+/Users/evebramley/codeclan_work/week_4/day_4/hogwarts/db/sql_runner.rb:8:in `async_prepare': ERROR:  relation "houses" does not exist (PG::UndefinedTable)
+LINE 1: INSERT INTO houses
+                    ^
+	from /Users/evebramley/codeclan_work/week_4/day_4/hogwarts/db/sql_runner.rb:8:in `run'
+	from /Users/evebramley/codeclan_work/week_4/day_4/hogwarts/models/house.rb:27:in `save'
+	from db/seeds.rb:25:in `<main>'
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f hogwarts.sql
+hogwarts.sql: No such file or directory
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+DROP TABLE
+psql:db/hogwarts.sql:2: NOTICE:  table "houses" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+psql:db/hogwarts.sql:15: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+➜  hogwarts git:(master) ✗ ruby db/seeds.rb 
+/Users/evebramley/codeclan_work/week_4/day_4/hogwarts/db/sql_runner.rb:8:in `async_prepare': ERROR:  relation "students" does not exist (PG::UndefinedTable)
+LINE 1: INSERT INTO students
+                    ^
+	from /Users/evebramley/codeclan_work/week_4/day_4/hogwarts/db/sql_runner.rb:8:in `run'
+	from /Users/evebramley/codeclan_work/week_4/day_4/hogwarts/models/student.rb:31:in `save'
+	from db/seeds.rb:30:in `<main>'
+➜  hogwarts git:(master) ✗ psql -d hogwarts
+psql (11.3)
+Type "help" for help.
+
+hogwarts=# SELECT * FROM students;
+ERROR:  relation "students" does not exist
+LINE 1: SELECT * FROM students;
+                      ^
+hogwarts=# \q
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+DROP TABLE
+psql:db/hogwarts.sql:2: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+psql:db/hogwarts.sql:10: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+CREATE TABLE
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+DROP TABLE
+psql:db/hogwarts.sql:2: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+psql:db/hogwarts.sql:10: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+CREATE TABLE
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+psql:db/hogwarts.sql:1: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+DROP TABLE
+CREATE TABLE
+psql:db/hogwarts.sql:15: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+➜  hogwarts git:(master) ✗ dropdb -d hogwarts
+dropdb: invalid option -- d
+Try "dropdb --help" for more information.
+➜  hogwarts git:(master) ✗ dropdb hogwarts
+➜  hogwarts git:(master) ✗ psql -d howarts
+psql: FATAL:  database "howarts" does not exist
+➜  hogwarts git:(master) ✗ psql -d hogwarts
+psql: FATAL:  database "hogwarts" does not exist
+➜  hogwarts git:(master) ✗ createdb hogwarts
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql 
+psql:db/hogwarts.sql:1: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+psql:db/hogwarts.sql:2: NOTICE:  table "houses" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+psql:db/hogwarts.sql:15: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+psql:db/hogwarts.sql:1: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+DROP TABLE
+CREATE TABLE
+psql:db/hogwarts.sql:15: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES house(id) ON DELETE CASCADE,
+                   ^
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+psql:db/hogwarts.sql:1: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+DROP TABLE
+CREATE TABLE
+psql:db/hogwarts.sql:15: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+➜  hogwarts git:(master) ✗ dropdb hogwarts
+➜  hogwarts git:(master) ✗ createdb hogwarts
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+psql:db/hogwarts.sql:1: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+psql:db/hogwarts.sql:2: NOTICE:  table "houses" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+psql:db/hogwarts.sql:15: ERROR:  syntax error at or near "REFERENCES"
+LINE 5:   house_id REFERENCES houses(id) ON DELETE CASCADE,
+                   ^
+➜  hogwarts git:(master) ✗ psql -d hogwarts -f db/hogwarts.sql
+psql:db/hogwarts.sql:1: NOTICE:  table "students" does not exist, skipping
+DROP TABLE
+DROP TABLE
+CREATE TABLE
+CREATE TABLE
+➜  hogwarts git:(master) ✗ ruby db/seeds.rb 
+➜  hogwarts git:(master) ✗ psql -d hogwarts
+psql (11.3)
+Type "help" for help.
+
+hogwarts=# SELECT * FROM houses;
+ id | house_name 
+----+------------
+  1 | Griffindor
+  2 | Hufflepuff
+  3 | Ravenclaw
+  4 | Slytherin
+(4 rows)
+
+hogwarts=# SELECT * FROM students;
+ id | first_name | last_name | house_id | age 
+----+------------+-----------+----------+-----
+  1 | Harry      | Potter    |        1 |  12
+  2 | Tom        | Riddle    |        4 |  33
+(2 rows)
+
+hogwarts=# \q
+➜  hogwarts git:(master) ✗ touch views/create.erb
+➜  hogwarts git:(master) ✗ gaa
+➜  hogwarts git:(master) ✗ git commit -m "lab part 7 done"
+[master 8adf2a6] lab part 7 done
+ 7 files changed, 90 insertions(+), 9 deletions(-)
+ create mode 100644 models/house.rb
+ create mode 100644 views/create.erb
+➜  hogwarts git:(master) git push
+Enumerating objects: 40, done.
+Counting objects: 100% (40/40), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (31/31), done.
+Writing objects: 100% (33/33), 4.05 KiB | 2.02 MiB/s, done.
+Total 33 (delta 12), reused 0 (delta 0)
+remote: Resolving deltas: 100% (12/12), done.
+To github.com:evebram/Wk4_day4_lab_hogwarts.git
+   4aae2f6..8adf2a6  master -> master
+➜  hogwarts git:(master) psql -d hogwarts
+psql (11.3)
+Type "help" for help.
+
+hogwarts=# SELECT * FROM students;
+ id | first_name | last_name | house_id | age  
+----+------------+-----------+----------+------
+  1 | Harry      | Potter    |        1 |   12
+  2 | Tom        | Riddle    |        4 |   33
+  3 | Rich       | Trist     |          | 6666
+  4 | Eve        | Bram      |          |   27
+(4 rows)
+
+hogwarts=# \q
+➜  hogwarts git:(master) 
