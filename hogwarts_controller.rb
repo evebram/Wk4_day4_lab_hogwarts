@@ -16,3 +16,9 @@ get '/students/:id' do
   @student = Student.find( params[:id] )
   erb( :show )
 end
+
+
+#New
+get '/students/new' do
+  erb( :new )
+end
