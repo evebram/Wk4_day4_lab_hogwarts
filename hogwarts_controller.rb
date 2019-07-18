@@ -11,14 +11,13 @@ get '/students' do
   erb( :index )
 end
 
+#NEW
+get '/students/new' do
+  erb( :new )
+end
+
 #SHOW
 get '/students/:id' do
   @student = Student.find( params[:id] )
   erb( :show )
-end
-
-
-#New
-get '/students/new' do
-  erb( :new )
 end
